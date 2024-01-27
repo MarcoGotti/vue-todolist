@@ -6,23 +6,28 @@ export default {
       list: [
         { 
           todo:'spesa',
-          done: true
+          done: false,
+          line: true
         },
         { 
           todo:'meccanico',
-          done: true
+          done: false,
+          line: true
         },
         { 
           todo:'giornale',
-          done: false
+          done: true,
+          line: true
         },
         { 
           todo:'posta',
-          done: true
+          done: true,
+          line: true
         },
         { 
           todo:'giardino',
-          done: true
+          done: true,
+          line: true
         }
       ]
     }
@@ -31,15 +36,23 @@ export default {
 </script>
 
 <template>
-  <div>
-   <template v-for="item in list">
-    <li v-if="item.done">
+  <ul>
+   <li v-for="item in list">
+<!-- Milestone 2 -->  
+      <span @click="item.done=!item.done">X</span>    
+      <span class="ml_1" v-if="item.done">{{ item.todo }}</span>
+      <span  class="ml_1" v-else></span>      
+<!-- Milestone 1 -->
+    <!-- <li v-if="!item.done">
+      <span @click="">X</span>
       {{ item.todo }}
     </li>
-    <li v-else></li>
-   </template>
+    <li class="line_through" v-else>
+      {{ item.todo }}
+    </li> -->
+   </li>
     
-  </div>
+  </ul>
 
 </template>
 

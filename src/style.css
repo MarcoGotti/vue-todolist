@@ -1,3 +1,21 @@
+.container {
+  width: 70%;
+  max-width: 1176px;
+  margin: auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.ml_1 {
+  margin-left: 1rem;
+}
+
+.line_through {
+  text-decoration: line-through;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
