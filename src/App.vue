@@ -7,27 +7,22 @@ export default {
         { 
           todo:'spesa',
           done: false,
-          line: true
         },
         { 
           todo:'meccanico',
-          done: false,
-          line: true
+          done: false
         },
         { 
           todo:'giornale',
           done: true,
-          line: true
         },
         { 
           todo:'posta',
           done: true,
-          line: true
         },
         { 
           todo:'giardino',
           done: true,
-          line: true
         }
       ]
     }
@@ -41,7 +36,9 @@ export default {
 <!-- Milestone 2 -->  
       <span @click="item.done=!item.done">X</span>    
       <span class="ml_1" v-if="item.done">{{ item.todo }}</span>
-      <span  class="ml_1" v-else></span>      
+      <span  class="ml_1" v-else></span>    
+      
+      <!-- aggiungi elemento a lista con input -->
 <!-- Milestone 1 -->
     <!-- <li v-if="!item.done">
       <span @click="">X</span>
