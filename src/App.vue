@@ -65,7 +65,7 @@ export default {
   </ul>
   <p v-else>Nothing left to do</p>
   
-  <input type="text" v-model='newItem'>
+  <input type="text" v-model='newItem' @keyup.enter="newItem !== '' ? addTodo(newItem) : ''">
   <button @click="newItem !== '' ? addTodo(newItem) : ''">Aggiungi</button>
 
 </template>
