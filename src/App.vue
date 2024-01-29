@@ -7,7 +7,7 @@ export default {
       list: [
         { 
           todo:'spesa',
-          done: true,
+          done: true
         },
         { 
           todo:'meccanico',
@@ -15,7 +15,7 @@ export default {
         },
         { 
           todo:'giornale',
-          done: true,
+          done: false,
         },
         { 
           todo:'posta',
@@ -30,12 +30,15 @@ export default {
   },
   methods: {
     addTodo(item){
-      const newTodo = {
-        todo: item,
-        done: true
-      };
-      this.list.push(newTodo);
-      this.newItem = '';   
+      if (item !== ''){
+        const newTodo = {
+                          todo: item,
+                          done: true
+                        };
+        this.list.push(newTodo);
+        this.newItem = '';
+      }
+   
     },
     removeTodo(index){
       console.log('remove todo', index);
@@ -50,7 +53,7 @@ export default {
    <li v-for="(item, index) in list">
 <!-- **************** Fabio: remove item from array ************************** --> 
     <span class="x" v-on:click="removeTodo(index)">X</span>
-    <span :class="!item.done ? 'line_through' : ''" @click="item.done=!item.done">
+    <span :class="{line_through : !item.done}" @click="item.done=!item.done">
       {{ item.todo }}
     </span>
     
@@ -65,8 +68,8 @@ export default {
   </ul>
   <p v-else>Nothing left to do</p>
   
-  <input type="text" v-model='newItem' @keyup.enter="newItem !== '' ? addTodo(newItem) : ''">
-  <button @click="newItem !== '' ? addTodo(newItem) : ''">Aggiungi</button>
+  <input type="text" v-model='newItem' @keyup.enter="addTodo(newItem)">
+  <button @click="addTodo(newItem)">Aggiungi</button>
 
 </template>
 
