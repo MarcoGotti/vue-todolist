@@ -3,14 +3,15 @@ export default {
   name: "App",
   data(){
     return {
+      newItem: '',
       list: [
         { 
           todo:'spesa',
-          done: false,
+          done: true,
         },
         { 
           todo:'meccanico',
-          done: false
+          done: true
         },
         { 
           todo:'giornale',
@@ -26,30 +27,46 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    addTodo(item){
+      const newTodo = {
+        todo: item,
+        done: true
+      };
+      this.list.push(newTodo);
+      this.newItem = '';   
+    },
+    removeTodo(index){
+      console.log('remove todo', index);
+      this.list.splice(index, 1);
+    }
   }
 }
 </script>
 
 <template>
-  <ul>
-   <li v-for="item in list">
-<!-- Milestone 2 -->  
-      <span @click="item.done=!item.done">X</span>    
-      <span class="ml_1" v-if="item.done">{{ item.todo }}</span>
-      <span  class="ml_1" v-else></span>    
-      
-      <!-- aggiungi elemento a lista con input -->
-<!-- Milestone 1 -->
-    <!-- <li v-if="!item.done">
-      <span @click="">X</span>
+  <ul v-if="list.length > 0">
+   <li v-for="(item, index) in list">
+<!-- **************** Fabio: remove item from array ************************** --> 
+    <span class="x" v-on:click="removeTodo(index)">X</span>
+    <span :class="!item.done ? 'line_through' : ''" @click="item.done=!item.done">
       {{ item.todo }}
-    </li>
-    <li class="line_through" v-else>
-      {{ item.todo }}
-    </li> -->
-   </li>
+    </span>
     
+
+<!-- *************** toggle onto the X, but item remains in the array *********** -->
+      <!-- <span @click="item.done=!item.done">X</span>    
+      <span class="ml_1" v-if="item.done">{{ item.todo }}</span>
+      <span  class="ml_1" v-else></span> -->   
+      
+      
+    </li>
   </ul>
+  <p v-else>Nothing left to do</p>
+  
+  <input type="text" v-model='newItem'>
+  <button @click="newItem !== '' ? addTodo(newItem) : ''">Aggiungi</button>
 
 </template>
 
