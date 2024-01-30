@@ -49,27 +49,37 @@ export default {
 </script>
 
 <template>
-  <ul v-if="list.length > 0">
-   <li v-for="(item, index) in list">
+  <div class="container p-5">
+    <div class="card col-3 m-auto ">
+      <div class="card-body">
+        <h1>To Do</h1>
+        <ul class="list-group" v-if="list.length > 0">
+          <li class="list-group-item" v-for="(item, index) in list">
 <!-- **************** Fabio: remove item from array ************************** --> 
-    <span class="x" v-on:click="removeTodo(index)">X</span>
-    <span :class="{line_through : !item.done}" @click="item.done=!item.done">
-      {{ item.todo }}
-    </span>
-    
-
+            <span class="x" v-on:click="removeTodo(index)">X</span>
+            <span :class="{'line_through' : !item.done}" @click="item.done=!item.done">
+              {{ item.todo }}
+            </span>
+          </li>
+        </ul>
 <!-- *************** toggle onto the X, but item remains in the array *********** -->
-      <!-- <span @click="item.done=!item.done">X</span>    
-      <span class="ml_1" v-if="item.done">{{ item.todo }}</span>
-      <span  class="ml_1" v-else></span> -->   
-      
-      
-    </li>
-  </ul>
-  <p v-else>Nothing left to do</p>
-  
-  <input type="text" v-model='newItem' @keyup.enter="addTodo(newItem)">
-  <button @click="addTodo(newItem)">Aggiungi</button>
+      <!--
+      <li>
+        <span @click="item.done=!item.done">X</span>    
+        <span class="ml_1" v-if="item.done">{{ item.todo }}</span>
+        <span  class="ml_1" v-else></span>
+      </li> -->  
+        <p v-else>Nothing left to do</p>   
+      </div>
+      <div class="m-3">
+        <input type="text" v-model='newItem' @keyup.enter="addTodo(newItem)">
+        <button class="m-1" @click="addTodo(newItem)">Aggiungi</button>
+      </div>
+
+    </div>
+  </div>
+ 
+
 
 </template>
 
